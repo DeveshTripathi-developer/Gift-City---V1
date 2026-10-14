@@ -38,6 +38,7 @@ export function ConnectSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     setErrorMessage(null);
     setLoading(true);
 
@@ -286,10 +287,11 @@ export function ConnectSection() {
                       name="fullName"
                       type="text"
                       required
+                      disabled={loading}
                       value={formData.fullName}
                       onChange={handleChange}
                       placeholder="e.g. Rahul Sharma"
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors"
+                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -302,10 +304,11 @@ export function ConnectSection() {
                       name="email"
                       type="email"
                       required
+                      disabled={loading}
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="rahul@example.com"
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors"
+                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                     />
                   </div>
                 </div>
@@ -320,10 +323,11 @@ export function ConnectSection() {
                       name="mobile"
                       type="tel"
                       required
+                      disabled={loading}
                       value={formData.mobile}
                       onChange={handleChange}
                       placeholder="+91 98765 43210"
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors"
+                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -336,10 +340,11 @@ export function ConnectSection() {
                       name="country"
                       type="text"
                       required
+                      disabled={loading}
                       value={formData.country}
                       onChange={handleChange}
                       placeholder="e.g. United Arab Emirates"
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors"
+                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                     />
                   </div>
                 </div>
@@ -353,9 +358,10 @@ export function ConnectSection() {
                       id="category"
                       name="category"
                       required
+                      disabled={loading}
                       value={formData.category}
                       onChange={handleChange}
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors"
+                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                     >
                       <option value="">Select investor category</option>
                       <option value="Individual">Individual (HNI / UHNI)</option>
@@ -375,10 +381,11 @@ export function ConnectSection() {
                       name="range"
                       type="text"
                       required
+                      disabled={loading}
                       value={formData.range}
                       onChange={handleChange}
                       placeholder="e.g. USD 150,000+"
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors"
+                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                     />
                   </div>
                 </div>
@@ -391,10 +398,11 @@ export function ConnectSection() {
                     id="message"
                     name="message"
                     rows={4}
+                    disabled={loading}
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell us about your investment objectives or requirements..."
-                    className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors resize-y"
+                    className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors resize-y disabled:bg-stone-100 disabled:cursor-not-allowed"
                   />
                 </div>
 
@@ -405,12 +413,13 @@ export function ConnectSection() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider bg-[#b17a2b] text-white hover:bg-[#95631f] transition-all disabled:opacity-60 cursor-pointer shadow-xs"
+                  aria-busy={loading}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider bg-[#b17a2b] text-white hover:bg-[#95631f] transition-all disabled:opacity-75 disabled:cursor-not-allowed disabled:pointer-events-none cursor-pointer shadow-xs"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Dispatching Enquiry...</span>
+                      <Loader2 className="w-4 h-4 animate-spin text-white shrink-0" />
+                      <span>Sending...</span>
                     </>
                   ) : (
                     <>
