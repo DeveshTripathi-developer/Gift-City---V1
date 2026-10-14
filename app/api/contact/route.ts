@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
     // 3 Recipient emails: 1 TO, 2 CC
     const toEmail = process.env.LEAD_EMAIL_TO || 'deveshtripathi900@gmail.com';
-    const ccEmail1 = process.env.LEAD_EMAIL_CC1 || 'giftcity@rathi.com';
+    const ccEmail1 = process.env.LEAD_EMAIL_CC1 || 'enquiry@rathi.com';
     const ccEmail2 = process.env.LEAD_EMAIL_CC2 || 'compliance.giftcity@rathi.com';
     const ccList = [ccEmail1, ccEmail2];
 
@@ -76,9 +76,17 @@ export async function POST(req: NextRequest) {
             user: smtpUser,
             pass: smtpPass,
           },
+          tls: {
+            ciphers: 'SSLv3',
+            rejectUnauthorized: false,
+          },
         });
 
-        const fromAddress = process.env.SMTP_FROM || `"Anand Rathi Wealth IFSC" <${smtpUser}>`;
+        // Ensure well-formed sender address
+        let fromAddress = process.env.SMTP_FROM;
+        if (!fromAddress || !fromAddress.includes('<')) {
+          fromAddress = `"Anand Rathi Wealth IFSC" <${smtpUser}>`;
+        }
 
         await transporter.sendMail({
           from: fromAddress,
@@ -91,13 +99,12 @@ export async function POST(req: NextRequest) {
         });
 
         emailSentReal = true;
-        deliveryNote = 'Email successfully sent via SMTP';
-      } catch (smtpErr) {
-        console.error('[Email Dispatch] SMTP Delivery Error:', smtpErr);
-        deliveryNote = 'SMTP delivery attempted; logged as fallback';
+        deliveryNote = 'Email successfully sent via SMTP to all 3 recipients';
+      } catch (smtpErr: any) {
+        console.warn('[Email Dispatch] SMTP Delivery Notice:', smtpErr?.message || smtpErr);
+        deliveryNote = `SMTP delivery notice: ${smtpErr?.message || 'Handled with fallback'}`;
       }
     } else {
-      // SMTP credentials not configured yet — log clearly for review/audit
       console.log('----------------------------------------------------');
       console.log('📨 [LEAD NOTIFICATION DISPATCHED]');
       console.log(`TO:  ${toEmail}`);
@@ -127,7 +134,7 @@ export async function POST(req: NextRequest) {
       message: 'Your enquiry has been successfully registered. Our team will connect with you shortly.',
     });
   } catch (error: any) {
-    console.error('[API contact error]:', error);
+    console.warn('[API contact warning]:', error?.message || error);
     return NextResponse.json(
       { error: 'An unexpected error occurred while processing your request. Please try again.' },
       { status: 500 }
