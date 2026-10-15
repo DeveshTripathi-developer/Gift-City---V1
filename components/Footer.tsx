@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="bg-[#f8f5ee] text-stone-700 py-12 sm:py-14 border-t border-stone-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Grid: Brand, Registered Office, Quick Links */}
+        {/* Main Footer Grid: Brand, Registered Office, Navigation */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 pb-8 sm:pb-10 border-b border-stone-200">
           {/* Logo & Tagline */}
           <div className="md:col-span-4 space-y-2.5">
@@ -56,7 +56,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Navigation Links */}
           <div className="md:col-span-3">
             <p className="font-semibold text-stone-900 uppercase tracking-wider text-[11px] mb-3">
               Navigation
