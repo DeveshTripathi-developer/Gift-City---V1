@@ -1,24 +1,36 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { Check, ArrowUpRight, Mail, Phone, Clock, FileCheck2, Sparkles } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import RegulatorySection from '@/components/RegulatorySection';
 import Footer from '@/components/Footer';
 
+function subscribe(callback: () => void) {
+  if (typeof window !== 'undefined') {
+    window.addEventListener('popstate', callback);
+    return () => window.removeEventListener('popstate', callback);
+  }
+  return () => {};
+}
+
+function getSnapshot(): string {
+  if (typeof window === 'undefined') return '';
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('ref') || sessionStorage.getItem('last_enquiry_ref') || '';
+  } catch {
+    return '';
+  }
+}
+
+function getServerSnapshot(): string {
+  return '';
+}
+
 export default function ThankYouPage() {
-  const [refId] = useState<string | null>(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('ref') || sessionStorage.getItem('last_enquiry_ref');
-      } catch {
-        return null;
-      }
-    }
-    return null;
-  });
+  const refId = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#fbfaf7] text-[#1a140e] font-sans antialiased selection:bg-[#b17a2b] selection:text-white">
