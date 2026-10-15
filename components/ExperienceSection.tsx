@@ -10,6 +10,7 @@ interface Leader {
   title: string;
   role: string;
   image: string;
+  portraitTransform?: string;
   bio: string;
   fullBio: string;
   url: string;
@@ -31,6 +32,7 @@ export function ExperienceSection() {
       title: 'Founder & Group Chairman',
       role: '(Non-Executive Director)',
       image: '/leaders/Anand Rathi.png',
+      portraitTransform: 'translateY(-10%) scale(1.16)',
       bio: 'Anand Rathi established the Anand Rathi Group in 1994. He is a gold medalist Chartered Accountant and has over 50 years of diverse experience.',
       fullBio: 'Anand Rathi established the Anand Rathi Group in 1994. He is a gold medalist Chartered Accountant and has over 50 years of diverse experience. Under his leadership, Anand Rathi Group has emerged as one of India’s premier financial services conglomerates with an extensive pan-India network and international footprint. He previously served as the President of the Bombay Stock Exchange (BSE) and has been a driving force in pioneering research-backed wealth management in India.',
       url: 'https://www.anandrathiwealth.in/Leaders/AnandRathi',
@@ -49,6 +51,7 @@ export function ExperienceSection() {
       title: 'Chief Executive Officer',
       role: '(Whole-Time Director)',
       image: '/leaders/Rakesh Rawal.png',
+      portraitTransform: 'translateY(-10%) scale(1.55)',
       bio: 'Rakesh Rawal is one of the longest standing CEOs in the private wealth industry, serving as the CEO of Anand Rathi Wealth since 2007.',
       fullBio: 'Rakesh Rawal is one of the longest standing CEOs in the private wealth industry, serving as the CEO of Anand Rathi Wealth since 2007. With more than three decades of experience spanning premier private banks and asset management, he has spearheaded the disciplined processes, unique client-centric framework, and sustained growth that established Anand Rathi Wealth as an NSE 500 listed leader managing over ₹1,00,000 Crore in AUM.',
       url: 'https://www.anandrathiwealth.in/Leaders/RakeshRawal',
@@ -58,6 +61,7 @@ export function ExperienceSection() {
       title: 'Joint CEO',
       role: '',
       image: '/leaders/Feroze Azeez.png',
+      portraitTransform: 'translateY(-8%) scale(1.16)',
       bio: 'Feroze Azeez drives the strategic direction of the company, shaping the evolving and dynamic business landscape to make Anand Rathi Wealth an NSE500 listed company.',
       fullBio: 'Feroze Azeez drives the strategic direction of the company, shaping the evolving and dynamic business landscape to make Anand Rathi Wealth an NSE500 listed company. Frequently ranked among India’s top wealth managers and widely respected for his quantitative approach to asset allocation, financial product structuring, and investor education, he has played an indispensable role in institutionalizing transparent, uncomplicated wealth management across India and GIFT City.',
       url: 'https://www.anandrathiwealth.in/Leaders/FerozeAzeez',
@@ -136,17 +140,22 @@ export function ExperienceSection() {
               {/* Leader Photo - Further reduced compact portrait height */}
               <div 
                 onClick={() => setSelectedLeader(leader)}
-                className="relative w-full sm:w-[145px] md:w-[155px] h-[175px] sm:h-[168px] md:h-[176px] shrink-0 rounded-2xl overflow-hidden shadow-sm bg-[#bfc5cd] border border-stone-300/80 cursor-pointer"
+                className="relative w-[155px] sm:w-[145px] md:w-[155px] h-[176px] sm:h-[168px] md:h-[176px] shrink-0 rounded-2xl overflow-hidden shadow-sm bg-[#bfc5cd] border border-stone-300/80 cursor-pointer"
                 title={`Click to view full bio of ${leader.name}`}
               >
-                <Image
-                  src={leader.image}
-                  alt={leader.name}
-                  fill
-                  className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, 155px"
-                  referrerPolicy="no-referrer"
-                />
+                <div
+                  className="absolute inset-0"
+                  style={{ transform: leader.portraitTransform, transformOrigin: 'top center' }}
+                >
+                  <Image
+                    src={leader.image}
+                    alt={leader.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    sizes="(min-width: 640px) and (max-width: 767px) 145px, 155px"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
               </div>
 
               {/* Overlapping White Information Card */}
