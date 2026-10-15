@@ -2,7 +2,7 @@ import React from 'react';
 
 export function QuoteBanner() {
   return (
-    <section className="bg-[#f0e8d9] py-16 sm:py-20 border-t border-b border-[#e5dccb]">
+    <section className="bg-[#f0e8d9] py-8 sm:py-10 border-t border-b border-[#e5dccb]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-16">
           <div className="max-w-xl">

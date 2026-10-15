@@ -63,6 +63,9 @@ export async function POST(req: NextRequest) {
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
 
+    console.log(`[Contact API] Processing submission for ${leadData.fullName} <${leadData.email}>`);
+    console.log(`[Contact API] Checking SMTP env vars: HOST=${smtpHost ? 'OK' : 'MISSING'}, USER=${smtpUser ? 'OK' : 'MISSING'}, PASS=${smtpPass ? 'OK' : 'MISSING'}`);
+
     if (smtpHost && smtpUser && smtpPass) {
       try {
         const port = Number(process.env.SMTP_PORT) || 587;
@@ -88,7 +91,7 @@ export async function POST(req: NextRequest) {
           fromAddress = `"Anand Rathi Wealth IFSC" <${smtpUser}>`;
         }
 
-        await transporter.sendMail({
+        const info = await transporter.sendMail({
           from: fromAddress,
           to: toEmail,
           cc: ccList,
@@ -99,23 +102,26 @@ export async function POST(req: NextRequest) {
         });
 
         emailSentReal = true;
-        deliveryNote = 'Email successfully sent via SMTP to all 3 recipients';
+        deliveryNote = `Email successfully delivered via SMTP (ID: ${info.messageId})`;
+        console.log(`✅ [Contact API] Email delivered successfully! Message ID: ${info.messageId}`);
       } catch (smtpErr: any) {
-        console.warn('[Email Dispatch] SMTP Delivery Notice:', smtpErr?.message || smtpErr);
+        console.warn('❌ [Contact API] SMTP Delivery Error:', smtpErr?.message || smtpErr);
         deliveryNote = `SMTP delivery notice: ${smtpErr?.message || 'Handled with fallback'}`;
       }
     } else {
-      console.log('----------------------------------------------------');
-      console.log('📨 [LEAD NOTIFICATION DISPATCHED]');
-      console.log(`TO:  ${toEmail}`);
-      console.log(`CC1: ${ccEmail1}`);
-      console.log(`CC2: ${ccEmail2}`);
-      console.log(`Subject: ${subject}`);
-      console.log(`Ref ID: ${referenceId}`);
-      console.log(`Investor: ${leadData.fullName} (${leadData.email})`);
-      console.log(`Investment Range: ${leadData.range}`);
-      console.log('----------------------------------------------------');
-      deliveryNote = 'Dispatched and recorded';
+      console.warn('⚠️ [Contact API WARNING] SMTP credentials are not configured on this server!');
+      console.warn('👉 To send real emails on your local server, create a .env.local file in the project root with:');
+      console.warn('   SMTP_HOST=smtp.office365.com');
+      console.warn('   SMTP_PORT=587');
+      console.warn('   SMTP_SECURE=false');
+      console.warn('   SMTP_USER=enquiry@rathi.com');
+      console.warn('   SMTP_PASS=Marketing@12345');
+      console.warn('   SMTP_FROM="Anand Rathi Wealth IFSC <enquiry@rathi.com>"');
+      console.warn('   LEAD_EMAIL_TO=deveshtripathi900@gmail.com');
+      console.warn('   LEAD_EMAIL_CC1=enquiry@rathi.com');
+      console.warn('   LEAD_EMAIL_CC2=poojasemlani@rathi.com');
+      console.warn('👉 After saving .env.local, RESTART your local dev server (npm run dev)!');
+      deliveryNote = 'SMTP credentials not configured on local server (simulated dispatch)';
     }
 
     return NextResponse.json({
@@ -123,9 +129,10 @@ export async function POST(req: NextRequest) {
       referenceId,
       submittedAt: leadData.submittedAt,
       deliveryStatus: {
-        sent: true,
+        sent: emailSentReal,
         method: emailSentReal ? 'live_smtp' : 'simulated_dispatch',
         note: deliveryNote,
+        smtpConfigured: Boolean(smtpHost && smtpUser && smtpPass),
         recipients: {
           to: toEmail,
           cc: ccList,

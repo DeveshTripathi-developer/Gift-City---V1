@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { Cog, Database, Search } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -12,7 +11,7 @@ export function PhilosophySection() {
       desc: 'Showing information that you need to see, without fear',
       icon: (
         <svg
-          className="w-8 h-8 sm:w-9 sm:h-9 text-[#b17a2b]"
+          className="w-5 h-5 sm:w-6 sm:h-6"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -35,98 +34,100 @@ export function PhilosophySection() {
     {
       title: 'UNCOMPLICATED',
       desc: 'Uncomplicating financial concepts to enable full understanding before your decision making',
-      icon: <Cog className="w-8 h-8 sm:w-9 sm:h-9 text-[#b17a2b]" strokeWidth={2.2} aria-hidden="true" />,
+      icon: <Cog className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.2} aria-hidden="true" />,
     },
     {
       title: 'BACKED BY DATA',
       desc: 'Data at scale will help you take a considered decision',
-      icon: <Database className="w-8 h-8 sm:w-9 sm:h-9 text-[#b17a2b]" strokeWidth={2.2} aria-hidden="true" />,
+      icon: <Database className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.2} aria-hidden="true" />,
     },
     {
       title: 'TRANSPARENCY',
       desc: 'Transparency = Trust = Implementation. Trust created with transparency. Value created by Implementation',
-      icon: <Search className="w-8 h-8 sm:w-9 sm:h-9 text-[#b17a2b]" strokeWidth={2.2} aria-hidden="true" />,
+      icon: <Search className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.2} aria-hidden="true" />,
     },
   ];
 
   return (
-    <section id="philosophy" className="py-12 sm:py-16 bg-[#faf8f5] border-b border-stone-200">
+    <section id="philosophy" className="py-10 sm:py-12 lg:py-14 bg-[#faf8f5] border-b border-stone-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Philosophy Intro Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start mb-10 pb-8 sm:mb-12 sm:pb-10 border-b border-stone-200/80">
-          <div className="lg:col-span-5">
-            <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-normal tracking-tight leading-tight">
-              Our philosophy.<br />
-              In a new financial ecosystem.
-            </h2>
-          </div>
-          <div className="lg:col-span-7 space-y-2.5">
-            <p className="font-serif text-xl sm:text-2xl text-stone-800 leading-relaxed font-normal">
-              For more than two decades, Anand Rathi Wealth has built its investment approach around a fundamental principle:
-            </p>
-            <p className="font-serif text-xl sm:text-2xl text-[#b17a2b] italic leading-relaxed font-normal">
-              Investment outcomes should be driven by process, not prediction.
-            </p>
-          </div>
+        {/* Philosophy Intro Header - Stacked Editorial Alignment matching reference */}
+        <div className="mb-7 pb-5 sm:mb-8 sm:pb-6 border-b border-stone-200/80 max-w-4xl">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[46px] text-stone-900 font-normal tracking-tight leading-[1.14]">
+            Our philosophy.<br />
+            In a new financial ecosystem.
+          </h2>
+          <p className="text-stone-600 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal mt-3.5 sm:mt-4 mb-2">
+            For more than two decades, Anand Rathi Wealth has built its investment approach around a fundamental principle:
+          </p>
+          <p className="font-serif text-xl sm:text-2xl md:text-[25px] text-[#b17a2b] font-normal leading-snug tracking-tight">
+            Investment outcomes should be driven by process, not prediction.
+          </p>
         </div>
 
-        {/* Header matching the Anand Rathi pattern */}
-        <div className="mb-6 sm:mb-8">
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900 uppercase">
-            VALUES THAT CREATE TRUST
+        {/* Section Heading with matching font-serif */}
+        <div className="mb-6 sm:mb-7">
+          <h3 className="font-serif text-3xl sm:text-4xl text-stone-900 font-normal tracking-tight">
+            Values that create trust
           </h3>
           {/* Gold Underline Bar */}
           <div className="w-14 h-1 bg-[#b17a2b] mt-2.5" />
         </div>
 
-        {/* Core Layout: 2x2 Cards Grid + Teamwork Image */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
-          {/* Left: 4 Rounded Cards in 2x2 Grid */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            {values.map((v, idx) => (
-              <motion.article
-                key={v.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white rounded-xl shadow-xs hover:shadow-md transition-shadow p-4 sm:p-5 flex flex-col items-center text-center justify-center border border-stone-100"
-              >
-                <div className="mb-2 sm:mb-2.5 flex items-center justify-center">
-                  {v.icon}
+        {/* 4 Cards in 1 Row (Responsive: 1 col on mobile, 2 col on tablet, 4 col on desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 items-stretch">
+          {values.map((v, idx) => (
+            <motion.article
+              key={v.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -4 }}
+              className="relative bg-white rounded-xl border border-stone-200/90 hover:border-[#b17a2b]/70 p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300 group"
+            >
+              {/* Subtle top edge hover accent */}
+              <div 
+                className="absolute top-0 left-6 right-6 h-[2px] bg-transparent group-hover:bg-[#b17a2b] transition-colors rounded-full" 
+                aria-hidden="true" 
+              />
+
+              <div>
+                {/* Icon & Step Number */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-[#fbf6ed] border border-[#f0e4cf] flex items-center justify-center text-[#b17a2b] group-hover:bg-[#b17a2b] group-hover:text-white transition-colors duration-300 shadow-xs">
+                    {v.icon}
+                  </div>
+                  <span className="font-serif text-xs font-semibold tracking-wider text-stone-400 group-hover:text-[#b17a2b] transition-colors">
+                    0{idx + 1}
+                  </span>
                 </div>
-                <h4 className="text-xs sm:text-sm font-bold tracking-wider uppercase text-stone-900 mb-1.5">
+
+                {/* Card Title */}
+                <h4 className="text-xs sm:text-sm font-bold tracking-wider uppercase text-stone-900 group-hover:text-[#95631f] transition-colors mb-2.5 leading-snug">
                   {v.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal max-w-xs">
+
+                {/* Card Description */}
+                <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed font-normal">
                   {v.desc}
                 </p>
-              </motion.article>
-            ))}
-          </div>
+              </div>
 
-          {/* Right: Teamwork Image Card */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-4 relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xs border border-stone-100 min-h-[260px] sm:min-h-[300px] lg:min-h-full"
-          >
-            <Image
-              src="/values-teamwork.png"
-              alt="Anand Rathi Wealth team collaboration"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              referrerPolicy="no-referrer"
-            />
-          </motion.div>
+              {/* Bottom Subtle Indicator */}
+              <div className="mt-6 pt-3.5 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400 font-medium">
+                <span className="tracking-wide uppercase text-[10px] text-stone-400 group-hover:text-stone-500 transition-colors">
+                  Core Value
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#b17a2b]/40 group-hover:bg-[#b17a2b] transition-colors" />
+              </div>
+            </motion.article>
+          ))}
         </div>
 
-        {/* Objective at GIFT City Summary */}
-        <div className="mt-8 sm:mt-10 p-5 sm:p-6 bg-white rounded-xl border border-stone-200/80 max-w-4xl border-l-4 border-l-[#b17a2b]">
-          <p className="text-stone-700 text-sm sm:text-base leading-relaxed">
+        {/* Objective at GIFT City Summary Card */}
+        <div className="mt-7 sm:mt-8 p-5 sm:p-6 bg-white rounded-xl border border-stone-200/90 border-l-4 border-l-[#b17a2b] shadow-xs">
+          <p className="text-stone-700 text-sm sm:text-base leading-relaxed font-normal">
             The objective at GIFT City is to bring this thinking together within a unified investment platform, enabling investors to experience the Anand Rathi Wealth proposition through the IFSC ecosystem.
           </p>
         </div>

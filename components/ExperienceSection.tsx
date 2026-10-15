@@ -65,11 +65,11 @@ export function ExperienceSection() {
   ];
 
   return (
-    <section id="experience" className="py-20 lg:py-24 bg-white border-b border-stone-200">
+    <section id="experience" className="py-10 sm:py-12 lg:py-14 bg-white border-b border-stone-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Foundation Head */}
-        <div className="max-w-3xl mb-12">
-          <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-normal tracking-tight leading-tight mb-4">
+        <div className="max-w-3xl mb-5 sm:mb-6">
+          <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-normal tracking-tight leading-tight mb-2.5 sm:mb-3">
             Built on more than two decades of experience
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed font-normal">
@@ -77,8 +77,18 @@ export function ExperienceSection() {
           </p>
         </div>
 
-        {/* 4 Quantitative Metrics */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 py-8 border-t border-b border-stone-200">
+        {/* Narrative & Philosophy Context */}
+        <div className="max-w-4xl space-y-3 sm:space-y-3.5 text-stone-600 text-sm sm:text-base leading-relaxed mb-6 sm:mb-7">
+          <p>
+            As of 30 September 2026, Anand Rathi Wealth oversees more than ₹1,08,377 crore in AUM across 14,309+ client families, supported by 431 Relationship Managers and a presence across 19+ cities in India, with an international presence in Dubai. We have opened our United Kingdom unit, which has also received FCA approval, further strengthening our global footprint.
+          </p>
+          <p className="font-serif text-base sm:text-lg text-stone-800 italic">
+            Our growth has been shaped by a consistent philosophy: keep investing structured, measurable and uncomplicated.
+          </p>
+        </div>
+
+        {/* 4 Quantitative Metrics - Positioned after Our Growth content */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-7 py-6 sm:py-7 border-t border-b border-stone-200">
           {metrics.map((m, idx) => (
             <motion.div 
               key={idx} 
@@ -98,17 +108,8 @@ export function ExperienceSection() {
           ))}
         </div>
 
-        <div className="mt-8 max-w-4xl space-y-4 text-stone-600 text-sm sm:text-base leading-relaxed">
-          <p>
-            As of 30 September 2026, Anand Rathi Wealth oversees more than ₹1,08,377 crore in AUM across 14,309+ client families, supported by 431 Relationship Managers and a presence across 19+ cities in India, with an international presence in Dubai. We have opened our United Kingdom unit, which has also received FCA approval, further strengthening our global footprint.
-          </p>
-          <p className="font-serif text-base sm:text-lg text-stone-800 italic">
-            Our growth has been shaped by a consistent philosophy: keep investing structured, measurable and uncomplicated.
-          </p>
-        </div>
-
         {/* Leadership section header matching the Meet the Visionaries style */}
-        <div className="mt-16 sm:mt-24 mb-10 sm:mb-12 text-center max-w-3xl mx-auto">
+        <div className="mt-12 sm:mt-16 mb-8 sm:mb-10 text-center max-w-3xl mx-auto">
           <p className="text-xs font-semibold tracking-widest uppercase text-[#b17a2b] mb-2">
             LEADERSHIP THAT SHAPED THE ORGANISATION
           </p>
@@ -132,10 +133,10 @@ export function ExperienceSection() {
               transition={{ duration: 0.55, delay: (idx % 2) * 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col sm:flex-row items-center group"
             >
-              {/* Leader Photo - Taller portrait presence */}
+              {/* Leader Photo - Further reduced compact portrait height */}
               <div 
                 onClick={() => setSelectedLeader(leader)}
-                className="relative w-full sm:w-[180px] md:w-[195px] aspect-[4/5] sm:aspect-auto sm:h-[245px] md:h-[255px] shrink-0 rounded-2xl overflow-hidden shadow-sm bg-[#bfc5cd] border border-stone-300/80 cursor-pointer"
+                className="relative w-full sm:w-[145px] md:w-[155px] h-[175px] sm:h-[168px] md:h-[176px] shrink-0 rounded-2xl overflow-hidden shadow-sm bg-[#bfc5cd] border border-stone-300/80 cursor-pointer"
                 title={`Click to view full bio of ${leader.name}`}
               >
                 <Image
@@ -143,13 +144,13 @@ export function ExperienceSection() {
                   alt={leader.name}
                   fill
                   className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, 195px"
+                  sizes="(max-width: 640px) 100vw, 155px"
                   referrerPolicy="no-referrer"
                 />
               </div>
 
-              {/* Overlapping White Information Card - Reduced height & sleek floating badge */}
-              <div className="relative z-10 w-[92%] sm:w-auto -mt-6 sm:mt-0 sm:-ml-8 md:-ml-10 bg-white py-3.5 px-4.5 sm:py-4 sm:px-5.5 shadow-md hover:shadow-lg transition-all rounded-2xl border border-stone-200/90 text-center flex-1 flex flex-col justify-center">
+              {/* Overlapping White Information Card */}
+              <div className="relative z-10 w-[92%] sm:w-auto -mt-4 sm:mt-0 sm:-ml-6 md:-ml-8 bg-white py-3 px-3.5 sm:py-3.5 sm:px-4.5 shadow-md hover:shadow-lg transition-all rounded-2xl border border-stone-200/90 text-center flex-1 flex flex-col justify-center">
                 <div>
                   <h4 className="font-serif font-bold text-base sm:text-lg text-stone-900 tracking-tight leading-tight">
                     {leader.name}

@@ -5,9 +5,9 @@ import GiftCitySection from '@/components/GiftCitySection';
 import PhilosophySection from '@/components/PhilosophySection';
 import ExperienceSection from '@/components/ExperienceSection';
 import InvestmentLeadershipSection from '@/components/InvestmentLeadershipSection';
-import QuoteBanner from '@/components/QuoteBanner';
 import ConnectSection from '@/components/ConnectSection';
 import RegulatorySection from '@/components/RegulatorySection';
+import FounderPhilosophySection from '@/components/FounderPhilosophySection';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -42,14 +42,14 @@ export default function Home() {
           <InvestmentLeadershipSection />
         </ScrollReveal>
 
-        {/* Quote Break Banner */}
-        <ScrollReveal viewportAmount={0.15} yOffset={24}>
-          <QuoteBanner />
-        </ScrollReveal>
-
         {/* Connect With Us Interactive Form */}
         <ScrollReveal viewportAmount={0.08} yOffset={32}>
           <ConnectSection />
+        </ScrollReveal>
+
+        {/* Founder Philosophy Section ("Clarity before action. Process before prediction.") */}
+        <ScrollReveal viewportAmount={0.08} yOffset={32}>
+          <FounderPhilosophySection />
         </ScrollReveal>
 
         {/* Regulatory & Investor Information */}

@@ -11,6 +11,7 @@ interface SubmissionResult {
     sent: boolean;
     method: string;
     note: string;
+    smtpConfigured?: boolean;
     recipients: {
       to: string;
       cc: string[];
@@ -98,32 +99,32 @@ export function ConnectSection() {
   };
 
   return (
-    <section id="connect" className="py-20 lg:py-24 bg-white border-b border-stone-200">
+    <section id="connect" className="py-10 sm:py-12 lg:py-14 bg-[#faf7f0] border-b border-stone-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Heading & Context */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left Column: Heading & Context matching reference */}
           <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-normal tracking-tight leading-tight mb-5">
-              Start a conversation about investing through GIFT City
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-[50px] leading-[1.12] text-stone-900 font-normal tracking-tight">
+              Start a conversation<br />
+              about investing<br />
+              through GIFT City
             </h2>
-            <p className="text-base sm:text-lg text-stone-600 leading-relaxed font-normal mb-4">
-              Understanding the structure, investment process and eligibility is the first step.
-            </p>
-            <p className="text-stone-500 text-sm sm:text-base leading-relaxed mb-6">
-              Connect with our team to know more about Anand Rathi Wealth&apos;s investment platform at GIFT City.
-            </p>
 
-            <div className="p-5 bg-[#fbfaf7] border border-stone-200 space-y-2 text-xs text-stone-600">
-              <p className="font-semibold text-stone-800 uppercase tracking-wider text-[11px]">
-                Registered Office
+            {/* Gold Accent Line (from reference) */}
+            <div className="w-14 h-[3px] bg-[#b17a2b] mt-5 sm:mt-6 mb-5 sm:mb-6" />
+
+            <div className="space-y-3.5 text-stone-600 text-sm sm:text-base leading-relaxed font-normal max-w-md">
+              <p>
+                Understanding the structure, investment process and eligibility is the first step.
               </p>
-              <p>Anand Rathi FME (IFSC) Private Limited</p>
-              <p>GIFT City, Gandhinagar, Gujarat 382355, India</p>
+              <p>
+                Connect with our team to know more about Anand Rathi Wealth&apos;s investment platform at GIFT City.
+              </p>
             </div>
           </div>
 
           {/* Right Column: Interactive Form & Beautiful Submission View */}
-          <div className="lg:col-span-7 bg-[#fbfaf7] border border-stone-200 p-6 sm:p-10">
+          <div className="lg:col-span-7 bg-white border border-stone-200/90 shadow-sm p-6 sm:p-10 rounded-xs">
             {submitted && submissionResult ? (
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -201,6 +202,11 @@ export function ConnectSection() {
                         ))}
                       </div>
                     </div>
+                    {submissionResult.deliveryStatus.smtpConfigured === false && (
+                      <div className="mt-2 p-2 bg-amber-50 border border-amber-200 text-amber-800 text-[11px] rounded-xs">
+                        ⚠️ <strong>Local Server Notice:</strong> SMTP credentials are missing in your local server&apos;s <code>.env.local</code> file. Please create <code>.env.local</code> on your machine and restart <code>npm run dev</code>.
+                      </div>
+                    )}
                   </div>
                 </div>
 
