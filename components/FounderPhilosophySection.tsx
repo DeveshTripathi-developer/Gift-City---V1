@@ -12,42 +12,11 @@ export function FounderPhilosophySection() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Framed Founder Portrait with Offset Layered Card */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-start">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-[300px] sm:max-w-[340px]"
-            >
-              {/* Offset Outline Frame (matching sample design) */}
-              <div 
-                className="absolute -bottom-3 -right-3 sm:-bottom-3.5 sm:-right-3.5 w-full h-full border border-[#cfc2ac] rounded-xs pointer-events-none" 
-                aria-hidden="true" 
-              />
-
-              {/* Main Portrait Card */}
-              <div className="relative aspect-[4/5] bg-[#dfd4c1] border border-[#cfc2ac] rounded-xs overflow-hidden shadow-xs flex items-end justify-center p-2.5 sm:p-3">
-                <Image
-                  src="/Anand Rathi.png"
-                  alt="Mr. Anand Rathi, Founder & Chairman, Anand Rathi Group"
-                  fill
-                  className="object-contain object-bottom"
-                  sizes="(max-width: 640px) 300px, 340px"
-                  referrerPolicy="no-referrer"
-                  priority
-                />
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column: High-Impact Editorial Statement & Philosophy Quote */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7"
           >
             {/* Primary Headline */}
@@ -99,6 +68,27 @@ export function FounderPhilosophySection() {
               </p>
             </div>
           </motion.div>
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-[340px] sm:max-w-[400px]"
+            >
+              <div className="relative aspect-[4/5]">
+                <Image
+                  src="/leaders/Anand_Rathi_Portrait.png"
+                  alt="Mr. Anand Rathi, Founder & Chairman, Anand Rathi Group"
+                  fill
+                  className="object-contain object-bottom"
+                  sizes="(max-width: 640px) min(340px, calc(100vw - 32px)), 400px"
+                  referrerPolicy="no-referrer"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
