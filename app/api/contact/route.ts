@@ -6,10 +6,11 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const { fullName, email, mobile, country, category, range, message } = body;
+    const { fullName, email, mobile, city, country, category, range, message } = body;
+    const resolvedCity = String(city || country || '').trim();
 
     // Validate required fields
-    if (!fullName || !email || !mobile || !country || !category || !range) {
+    if (!fullName || !email || !mobile || !resolvedCity || !category || !range) {
       return NextResponse.json(
         { error: 'Please provide all required fields.' },
         { status: 400 }
@@ -37,7 +38,8 @@ export async function POST(req: NextRequest) {
       fullName: String(fullName).trim(),
       email: String(email).trim().toLowerCase(),
       mobile: String(mobile).trim(),
-      country: String(country).trim(),
+      city: resolvedCity,
+      country: resolvedCity,
       category: String(category).trim(),
       range: String(range).trim(),
       message: message ? String(message).trim() : '',
