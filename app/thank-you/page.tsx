@@ -130,7 +130,7 @@ export default function ThankYouPage() {
                     We review your details
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
-                    Our team looks at your country of residence, investor category and indicative investment range, so the conversation starts in the right place.
+                    Our team looks at your city, investor category and indicative investment range, so the conversation starts in the right place.
                   </p>
                 </div>
                 <div className="pt-6 mt-6 border-t border-stone-200/60 text-[11px] font-semibold uppercase tracking-wider text-stone-400">

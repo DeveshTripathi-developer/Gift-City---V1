@@ -8,7 +8,7 @@ export function ConnectSection() {
     fullName: '',
     email: '',
     mobile: '',
-    country: '',
+    city: '',
     category: '',
     range: '',
     message: '',
@@ -137,7 +137,7 @@ export function ConnectSection() {
                     disabled={loading}
                     value={formData.fullName}
                     onChange={handleChange}
-                    placeholder="e.g. Rahul Sharma"
+                    placeholder="e.g. Devesh Tripathi"
                     className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                   />
                 </div>
@@ -154,7 +154,7 @@ export function ConnectSection() {
                     disabled={loading}
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="rahul@example.com"
+                    placeholder="devesh@example.com"
                     className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                   />
                 </div>
@@ -179,18 +179,18 @@ export function ConnectSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="country" className="block text-xs font-medium text-stone-700">
-                    Country of Residence *
+                  <label htmlFor="city" className="block text-xs font-medium text-stone-700">
+                    City *
                   </label>
                   <input
-                    id="country"
-                    name="country"
+                    id="city"
+                    name="city"
                     type="text"
                     required
                     disabled={loading}
-                    value={formData.country}
+                    value={formData.city}
                     onChange={handleChange}
-                    placeholder="e.g. United Arab Emirates"
+                    placeholder="e.g. Mumbai, Delhi NCR, Bengaluru"
                     className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                   />
                 </div>
@@ -221,7 +221,7 @@ export function ConnectSection() {
 
                 <div className="space-y-1.5">
                   <label htmlFor="range" className="block text-xs font-medium text-stone-700">
-                    Indicative Investment Range *
+                    Indicative Investment Range (INR) *
                   </label>
                   <input
                     id="range"
@@ -231,7 +231,7 @@ export function ConnectSection() {
                     disabled={loading}
                     value={formData.range}
                     onChange={handleChange}
-                    placeholder="e.g. USD 150,000+"
+                    placeholder="e.g. ₹1.25 Crore+"
                     className="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-none focus:outline-none focus:border-[#b17a2b] text-stone-900 transition-colors disabled:bg-stone-100 disabled:cursor-not-allowed"
                   />
                 </div>

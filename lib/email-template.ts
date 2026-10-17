@@ -2,7 +2,8 @@ export interface ContactFormData {
   fullName: string;
   email: string;
   mobile: string;
-  country: string;
+  city: string;
+  country?: string;
   category: string;
   range: string;
   message?: string;
@@ -14,7 +15,7 @@ export function generateLeadEmailHtml(data: ContactFormData): string {
   const safeName = escapeHtml(data.fullName);
   const safeEmail = escapeHtml(data.email);
   const safeMobile = escapeHtml(data.mobile);
-  const safeCountry = escapeHtml(data.country);
+  const safeCity = escapeHtml(data.city || data.country || '');
   const safeCategory = escapeHtml(data.category);
   const safeRange = escapeHtml(data.range);
   const safeMessage = data.message ? escapeHtml(data.message).replace(/\n/g, '<br/>') : '<em>No additional message provided</em>';
@@ -37,10 +38,6 @@ export function generateLeadEmailHtml(data: ContactFormData): string {
     .content { padding: 32px; }
     .intro { margin-bottom: 24px; font-size: 15px; line-height: 1.6; color: #42382f; }
     .meta-box { background: #faf8f5; border: 1px solid #e7ded0; border-radius: 6px; padding: 16px 20px; margin-bottom: 24px; }
-    .meta-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
-    .meta-row:last-child { margin-bottom: 0; }
-    .meta-label { color: #76695b; font-weight: 500; }
-    .meta-val { color: #1a140e; font-weight: 600; }
     .table { width: 100%; border-collapse: collapse; margin-top: 16px; margin-bottom: 24px; }
     .table th { text-align: left; padding: 10px 14px; background: #fbf9f5; color: #76695b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 1px solid #e7ded0; }
     .table td { padding: 12px 14px; border-bottom: 1px solid #f0eae1; font-size: 14px; color: #2b221a; }
@@ -94,15 +91,15 @@ export function generateLeadEmailHtml(data: ContactFormData): string {
             <td><a href="tel:${safeMobile}" style="color: #1a140e; text-decoration: none;">${safeMobile}</a></td>
           </tr>
           <tr>
-            <td class="field-name">Country of Residence</td>
-            <td>${safeCountry}</td>
+            <td class="field-name">City</td>
+            <td><strong>${safeCity}</strong></td>
           </tr>
           <tr>
             <td class="field-name">Investor Category</td>
             <td>${safeCategory}</td>
           </tr>
           <tr>
-            <td class="field-name">Investment Range</td>
+            <td class="field-name">Indicative Investment Range (INR)</td>
             <td><strong style="color: #95631f;">${safeRange}</strong></td>
           </tr>
         </tbody>
@@ -128,6 +125,7 @@ export function generateLeadEmailHtml(data: ContactFormData): string {
 }
 
 export function generateLeadEmailText(data: ContactFormData): string {
+  const city = data.city || data.country || '';
   return `NEW INVESTOR INQUIRY - ANAND RATHI WEALTH IFSC (GIFT CITY)
 ============================================================
 Reference ID: ${data.referenceId}
@@ -137,9 +135,9 @@ INVESTOR DETAILS:
 - Full Name: ${data.fullName}
 - Email: ${data.email}
 - Mobile: ${data.mobile}
-- Country of Residence: ${data.country}
+- City: ${city}
 - Investor Category: ${data.category}
-- Indicative Investment Range: ${data.range}
+- Indicative Investment Range (INR): ${data.range}
 
 MESSAGE / OBJECTIVES:
 ${data.message || 'No additional message provided'}

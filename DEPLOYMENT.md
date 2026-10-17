@@ -26,12 +26,13 @@ Configure these environment variables in your deployment environment or containe
 NODE_ENV=production
 PORT=3000
 
-# SMTP Configuration (For Live Lead Email Dispatch)
-SMTP_HOST=smtp.office365.com
+# SMTP Configuration (Using Amazon SES)
+# Host matches your AWS Region (e.g. ap-south-1 Mumbai, us-east-1 N. Virginia)
+SMTP_HOST=email-smtp.ap-south-1.amazonaws.com
 SMTP_PORT=587
 SMTP_SECURE=false
-SMTP_USER=enquiry@rathi.com
-SMTP_PASS=YourStrongSmtpPasswordOrAppKey
+SMTP_USER=AKIAIOSFODNN7EXAMPLE
+SMTP_PASS=BMZYourSESGeneratedSmtpPassword123
 SMTP_FROM="Anand Rathi Wealth IFSC <enquiry@rathi.com>"
 
 # Lead Notification Recipients (1 Primary TO, 2 CC)
